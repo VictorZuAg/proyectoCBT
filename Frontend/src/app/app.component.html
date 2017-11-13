@@ -1,0 +1,101 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div *ngIf="identity" class="principal">
+  
+  <div class="barraLateral">
+    <div class="botones">
+        <div class="escudo" [routerLink]="['/']" >
+            <img id="escudo" src="{{url+'obtenerImagenUsuario/cbtEscudo.png'}}" alt="Imagen de Usuario" >
+        </div>
+      <div class="boton">Buscar</div>
+      <div class="boton"[routerLink]="['/alumnos']" [routerLinkActive]="['actived']" >Alumnos</div>
+      <div class="boton">Maestros</div>
+    </div>
+    <div class="usuarioDatos">
+        <div class="imagenForEdit" >
+            <img id="imagenUsuario" src="{{url+'obtenerImagenUsuario/'+identity.imagen}}" alt="Imagen de Usuario" >
+        </div>
+        <span id="nombre" >{{identity.usuario | uppercase}}</span>
+        <div class="boton" [routerLink]="['/misDatos']" [routerLinkActive]="['actived']">Mis datos</div>
+        <div class="boton" (click)="logOut()" [routerLink]="['/']">Cerrar sesión</div>
+    </div>
+  </div>
+
+  <div class="vista">
+    <router-outlet></router-outlet> 
+  </div>
+</div>
+
+
+<div *ngIf="!identity" class="forms">
+  <div class="escudo" >
+    <img id="escudo" src="{{url+'obtenerImagenUsuario/cbtEscudo.png'}}" alt="Imagen de Usuario" >
+  </div>
+  <div>
+      <h1>Log In</h1>
+      <div *ngIf="errorMensaje" >
+        <p>{{errorMensaje}}</p>
+      </div>
+      <form #loginForm="ngForm" (ngSubmit)="onSubmit()" >
+        <p>
+          <label for="usuario">Usuario</label>
+          <input type="text" #usuario="ngModel" name="usuario" [(ngModel)]="user.usuario" required>
+          <span *ngIf="!usuario.valid && usuario.touched">
+            El Usuario es obligatorio 
+          </span>
+        </p>
+        <p>
+          <label for="password">Password</label>
+          <input type="password" #password="ngModel" name="password"  [(ngModel)]="user.password" required>
+          <span *ngIf="!password.valid && password.touched">
+            La contraseña es obligatoria
+          </span>
+        </p>
+        <input type="submit" value="Entrar">
+      </form>
+  </div>
+
+  <div>
+      <h1>Registro</h1>
+      <form #registroForm="ngForm" (ngSubmit)="registrar()" >
+        <div *ngIf="alertRegistro" >
+          {{alertRegistro}}
+        </div>
+        <p>
+            <label for="nombreRegistro">Nombre</label>
+            <input type="text" #nombreRegistro="ngModel" name="nombreRegistro" [(ngModel)]="userRegistro.nombre" required >
+            <span *ngIf="!nombreRegistro.valid && nombreRegistro.touched">
+              El Nombre es obligatorio 
+            </span>
+        </p>
+        <p>
+            <label for="paternoRegistro">Apellido Paterno</label>
+            <input type="text" #paternoRegistro="ngModel" name="paternoRegistro" [(ngModel)]="userRegistro.paterno" required >
+            <span *ngIf="!paternoRegistro.valid && paternoRegistro.touched">
+              El Apellido Paterno es obligatorio 
+            </span>
+        </p>
+        <p>
+          <label for="maternoRegistro">Apellido Materno</label>
+          <input type="text" #maternoRegistro="ngModel" name="maternoRegistro" [(ngModel)]="userRegistro.materno" required >
+          <span *ngIf="!maternoRegistro.valid && maternoRegistro.touched">
+            El Apellido Parterno es obligatorio 
+          </span>
+        </p>
+        <p>
+          <label for="usuarioRegistro">Usuario</label>
+          <input type="text" #usuarioRegistro="ngModel" name="usuarioRegistro" [(ngModel)]="userRegistro.usuario" required >
+          <span *ngIf="!usuarioRegistro.valid && usuarioRegistro.touched">
+            El Usuario es obligatorio 
+          </span>
+        </p>
+        <p>
+          <label for="passwordRegistro">Password</label>
+          <input type="password" #passwordRegistro="ngModel" name="passwordRegistro" [(ngModel)]="userRegistro.password" required>
+          <span *ngIf="!passwordRegistro.valid && passwordRegistro.touched">
+            La contraseña es obligatoria
+          </span>
+        </p>
+        <input type="submit" value="Registrar">
+      </form>
+  </div>
+</div>

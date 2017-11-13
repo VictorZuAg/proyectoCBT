@@ -1,0 +1,26 @@
+<div *ngIf="identity">
+  <h1> {{titulo}} </h1>
+  <div *ngIf="mensaje">
+    {{mensaje}}
+  </div>
+  <div>
+    <div *ngIf="identity.role == 'ADMINISTRADOR'">
+      <div class="boton" [routerLink]="['/nuevoAlumno']"> Nuevo Alumno </div>
+    </div>
+    <div>
+      <ul class="alumnos-list" *ngIf="identity">
+        <li *ngFor="let alumno of alumnos">
+          <a [routerLink]="['/alumno', alumno._id]">
+            {{alumno.matricula}} {{alumno.nombre}}
+          </a>
+          <button (click)="confirmarDelete(alumno._id)">Eliminar</button>
+          <div class="boton" [routerLink]="['/editarAlumno', alumno._id]"> Editar Alumno </div>
+          <div class="seguro" *ngIf="confirmado == alumno._id">
+            <a (click)="deleteAlumno(alumno._id)">Eliminar</a>
+            <a (click)="cancelar()">Cancelar</a>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,116 @@
+$dark-primary-color:#00796B;
+$default-primary-color:#009688;
+$light-primary-color: #B2DFDB;
+$text-primary-color: #fff;
+$accent-color: #607D8B;
+$primary-text-color:#212121;
+$secondary-text-color:#757575;
+$divider-color:#BDBDBD;
+$color-fondo: #e2e1e0;
+*{
+    font-family: Raleway;
+}
+body{
+    background: $color-fondo;
+}
+.principal{
+    display: flex;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    .barraLateral{
+        position: fixed;
+        display: flex;
+        width: 12%;
+        height: 100%;
+        background: $dark-primary-color;
+        flex-flow: column nowrap;
+        justify-content: space-between;
+        color: $text-primary-color;
+        box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+        z-index: 12;
+        .botones{
+            .escudo{
+                width: 130px;
+                height: 130px;
+                img{
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+            display: flex;
+            flex-flow: column nowrap;
+            justify-content: space-between;
+            align-items: center;
+            div:first-child{
+                border-bottom: 0px;
+            }
+            div{
+                padding:5% 0;
+            }
+        }
+        .usuarioDatos{
+            display: flex;
+            flex-flow: column nowrap;
+            align-items: center;
+            .imagenForEdit{
+                position: relative;
+                border-radius: 50px;
+                width:100px;
+                height: 100px;
+                img{
+                    border-radius: 50px;
+                    width: 100px;
+                    height: 100px;
+                }
+            }
+            div:last-child{
+                font-size: 15px;
+                border-bottom: 0px;
+            }
+        }
+        div{
+            width: 100%;
+            text-align: center;
+            letter-spacing: 5px;
+            line-height: 40px;
+            font-size: 21px;
+            cursor: pointer;
+            user-select: none;
+            //touch-action: none !important;
+           // border-bottom: 1px solid $divider-color;
+        }
+        div:focus{
+            outline:0;
+        }
+        .boton:hover{
+            background: $light-primary-color;
+            color: $primary-text-color;
+        }
+        span{
+            text-align: center;
+            text-transform: uppercase;
+            font-size: 21px;
+        }
+    }
+    .vista{
+        left: 12%;
+        height:100%;
+        position: relative;
+        width: 88%;
+        background: $color-fondo;
+        float: left;
+        text-align: center;
+        overflow-y: scroll;
+    }
+}
+.actived{
+    background: $color-fondo;
+    color: $primary-text-color;
+}
+h1{
+    font-size: 68px;
+}
+h2{
+    font-size: 51px
+}

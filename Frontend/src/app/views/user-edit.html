@@ -1,0 +1,34 @@
+<div *ngIf="identity" >
+    <h1>{{titulo}}</h1>
+    <!-- Formulario -->
+    <form #updateForm="ngForm" (ngSubmit)="onSubmit()" >
+        <div *ngIf="alertMensaje">
+            {{alertMensaje}}
+        </div>
+        <p>
+            <label for="nombre">Nombre</label>
+            <input type="text" #nombre="ngModel" name="nombre" [(ngModel)]="user.nombre" required >
+        </p>
+        <p>
+            <label for="paterno">Apellido Paterno</label>
+            <input type="text" #paternoRegistro="ngModel" name="paterno" [(ngModel)]="user.paterno" required >
+        </p>
+        <p>
+            <label for="materno">Apellido Materno</label>
+            <input type="text" #paternoRegistro="ngModel" name="materno" [(ngModel)]="user.materno" required >
+        </p>
+        <p>
+            <label for="usuario">Usuario</label>
+            <input type="text" #usuarioRegistro="ngModel" name="usuario" [(ngModel)]="user.usuario" required >
+        </p>
+        
+        <div class="imagenForEdit" *ngIf="user.imagen && user.imagen != 'null' " >
+            <img src="{{url+'obtenerImagenUsuario/'+user.imagen}}" alt="Imagen de Usuario" style="width: 250px;" >
+        </div>
+        <p>
+            <label for="imagen">Usuario</label>
+            <input type="file" placeholder="Subir Imagen" name="imagen" (change)="fileChangeEvent($event)" required >
+        </p>
+        <input type="submit" value="{{titulo}}">
+    </form>
+</div>
